@@ -10,6 +10,8 @@ import Video from './video'
 
 const keyboardEvents = ['keyup', 'keydown', 'keypress']
 
+declare const InstallTrigger: any
+
 class Utils {
   public static castSubTime(time: number | string) {
     return typeof time === 'number' ? time : parseInt(time, 10)
@@ -110,6 +112,21 @@ class Utils {
 
   public static arrayStringify(data: string[]): string {
     return data.map((item) => `q=${encodeURIComponent(item)}`).join('&')
+  }
+
+  public static isFirefox(): boolean {
+    return typeof InstallTrigger !== 'undefined'
+  }
+
+  public static measureScrollbarWidth(): number {
+    const scrollbox = document.createElement('div')
+    scrollbox.style.overflow = 'scroll'
+    document.body.appendChild(scrollbox)
+
+    const scrollBarWidth = scrollbox.offsetWidth - scrollbox.clientWidth
+
+    document.body.removeChild(scrollbox)
+    return scrollBarWidth
   }
 }
 

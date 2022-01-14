@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Utils from './utils'
 import Notification from './components/notification/Notification'
 import ProgressBar from './components/progress/ProgressBar'
 import SettingsComponent from './components/settings/Settings'
@@ -11,6 +12,10 @@ class UI {
     const subsContainerElement = document.createElement('div')
     subsContainerElement.id = 'easysubs'
     playerContainerElement?.appendChild(subsContainerElement)
+    if (Utils.isFirefox()) {
+      const scrollbarwidth = Utils.measureScrollbarWidth()
+      subsContainerElement.style.setProperty('--scrollbar-width', `${scrollbarwidth + 3}px`)
+    }
 
     ReactDOM.render(<SubsComponent />, document.querySelector('#easysubs'))
   }

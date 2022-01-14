@@ -1,5 +1,6 @@
 $gray: #6b6b6b;
 $white: #fff;
+$scrollbar-width: 5px;
 
 i > span {
   font-style: italic !important;
@@ -10,6 +11,7 @@ i > span {
 }
 
 #easysubs {
+  --scrollbar-width: $scrollbar-width;
   display: none;
   z-index: 1;
   position: absolute;
@@ -114,10 +116,10 @@ i > span {
       max-height: 200px;
       overflow-y: auto;
       font-size: 14px;
-      padding-right: 5px;
+      padding-right: var(--scrollbar-width);
 
       &::-webkit-scrollbar {
-        width: 5px;
+        width: $scrollbar-width;
       }
 
       &::-webkit-scrollbar-track {
